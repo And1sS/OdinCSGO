@@ -11,6 +11,6 @@ public:
 	static CBaseEntity                   getLocalPlayer();
 	static std::vector<CBaseEntity>      getEntityList();
 
-	static Vec3                          getViewAngles();
-	static void                          setViewAngles(Vec3 angles);
+	static Vector                          getViewAngles();
+	static void                          setViewAngles(Vector angles);
 };

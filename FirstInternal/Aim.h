@@ -7,9 +7,9 @@
 class Aim
 {
 public:
-	static CBaseEntity   getClosestFOVEnemy(std::vector<CBaseEntity> entities);
+	CBaseEntity   getClosestFOVEnemy(std::vector<CBaseEntity> entities);
 
-	static void         aimAt(CBaseEntity entity);
-	static void         run();
+	void         aimAt(CBaseEntity entity);
+	void         run();
 };
 

@@ -19,7 +19,7 @@ CBaseEntity Aim::getClosestFOVEnemy(std::vector<CBaseEntity> entities)
 			continue;
 		}
 
-		Vec3 relativeAngle   = Vec3::getRelativeAnglesDeg(localPlayer.getBoneOrigin(HEAD_BONE_INDEX),
+		Vector relativeAngle   = Vector::getRelativeAnglesDeg(localPlayer.getBoneOrigin(HEAD_BONE_INDEX),
 			entity.getBoneOrigin(HEAD_BONE_INDEX), Engine::getViewAngles());
 
 		float fovDist        = std::hypotf(relativeAngle.getX(), relativeAngle.getY());
@@ -43,11 +43,11 @@ void Aim::aimAt(CBaseEntity enemy)
 
 	CBaseEntity localPlayer = Engine::getLocalPlayer();
 
-	Vec3 myHeadOrigin      = localPlayer.getBoneOrigin(HEAD_BONE_INDEX);
-	Vec3 enemyHeadOrigin   = enemy.getBoneOrigin(HEAD_BONE_INDEX);
+	Vector myHeadOrigin      = localPlayer.getBoneOrigin(HEAD_BONE_INDEX);
+	Vector enemyHeadOrigin   = enemy.getBoneOrigin(HEAD_BONE_INDEX);
 
-	Vec3 deltaAngles       = Vec3::getRelativeAnglesDeg(myHeadOrigin, enemyHeadOrigin, Engine::getViewAngles());
-	Vec3 newAngles         = Engine::getViewAngles() + deltaAngles;
+	Vector deltaAngles       = Vector::getRelativeAnglesDeg(myHeadOrigin, enemyHeadOrigin, Engine::getViewAngles());
+	Vector newAngles         = Engine::getViewAngles() + deltaAngles;
 
 	newAngles              = newAngles - Engine::getLocalPlayer().getViewPunchAngle() * 2.0f;
 

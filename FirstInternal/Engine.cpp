@@ -32,21 +32,21 @@ std::vector<CBaseEntity> Engine::getEntityList()
 	return entityList;
 }
 
-Vec3 Engine::getViewAngles()
+Vector Engine::getViewAngles()
 {
 	uintptr_t clientState = *reinterpret_cast<uintptr_t*>(Utilities::getEngineBase()
 		+ hazedumper::signatures::dwClientState);
 
-	return *reinterpret_cast<Vec3*>(clientState +
+	return *reinterpret_cast<Vector*>(clientState +
 		hazedumper::signatures::dwClientState_ViewAngles);
 }
 
-void Engine::setViewAngles(Vec3 angles)
+void Engine::setViewAngles(Vector angles)
 {
 	uintptr_t clientState = *reinterpret_cast<uintptr_t*>(Utilities::getEngineBase()
 		+ hazedumper::signatures::dwClientState);
 
-	Vec3* pAngles = reinterpret_cast<Vec3*>(clientState 
+	Vector* pAngles = reinterpret_cast<Vector*>(clientState 
 		+ hazedumper::signatures::dwClientState_ViewAngles);
 	*pAngles = angles;
 }

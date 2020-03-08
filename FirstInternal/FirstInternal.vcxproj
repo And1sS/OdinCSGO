@@ -164,11 +164,15 @@
   <ItemGroup>
     <ClInclude Include="Aim.h" />
     <ClInclude Include="CBaseEntity.h" />
+    <ClInclude Include="CGlowObjectManager.h" />
+    <ClInclude Include="definitions.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="hazedumper.h" />
+    <ClInclude Include="platform.h" />
     <ClInclude Include="Utilities.h" />
-    <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Vector.h" />
+    <ClInclude Include="Visuals.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Aim.cpp" />
@@ -177,7 +181,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Utilities.cpp" />
-    <ClCompile Include="Vec3.cpp" />
+    <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="Visuals.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

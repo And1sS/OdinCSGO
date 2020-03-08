@@ -7,7 +7,7 @@
 
 #include "Utilities.h"
 #include "hazedumper.h"
-#include "Vec3.h"
+#include "Vector.h"
 
 struct mat3x4
 {
@@ -37,9 +37,9 @@ public:
     bool             isDormant();
     bool             isAlive();
 
-    Vec3             getOrigin();
-    Vec3             getViewPunchAngle();
-    Vec3             getBoneOrigin(uint32_t BoneIndex);
+    Vector             getOrigin();
+    Vector             getViewPunchAngle();
+    Vector             getBoneOrigin(uint32_t BoneIndex);
 
     virtual void     printInfo();
 

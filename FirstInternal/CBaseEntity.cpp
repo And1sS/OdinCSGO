@@ -27,9 +27,9 @@ uint32_t CBaseEntity::getTeam()
 	return *reinterpret_cast<uint32_t*>(base + hazedumper::netvars::m_iTeamNum);
 }
 
-Vec3 CBaseEntity::getViewPunchAngle()
+Vector CBaseEntity::getViewPunchAngle()
 {
-    return *reinterpret_cast<Vec3*>(base + hazedumper::netvars::m_aimPunchAngle);
+    return *reinterpret_cast<Vector*>(base + hazedumper::netvars::m_aimPunchAngle);
 }
 
 uint32_t CBaseEntity::getGlowIndex()
@@ -37,9 +37,9 @@ uint32_t CBaseEntity::getGlowIndex()
 	return *reinterpret_cast<uint32_t*>(base + hazedumper::netvars::m_iGlowIndex);
 }
 
-Vec3 CBaseEntity::getOrigin()
+Vector CBaseEntity::getOrigin()
 {
-	return *reinterpret_cast<Vec3*>(base + hazedumper::netvars::m_vecOrigin);
+	return *reinterpret_cast<Vector*>(base + hazedumper::netvars::m_vecOrigin);
 }
 
 uint32_t CBaseEntity::getSpottedByMask()
@@ -62,12 +62,12 @@ bool CBaseEntity::isValid()
 	return base != NULL;
 }
 
-Vec3 CBaseEntity::getBoneOrigin(uint32_t index)
+Vector CBaseEntity::getBoneOrigin(uint32_t index)
 {
 	uintptr_t pBoneMatrix = *reinterpret_cast<uintptr_t*>(base + hazedumper::netvars::m_dwBoneMatrix);
 	mat3x4 bone = *reinterpret_cast<mat3x4*>(pBoneMatrix + index * sizeof(mat3x4));
 
-	return Vec3(bone.mat[0][3], bone.mat[1][3], bone.mat[2][3]);
+	return Vector(bone.mat[0][3], bone.mat[1][3], bone.mat[2][3]);
 }
 
 void CBaseEntity::printInfo()

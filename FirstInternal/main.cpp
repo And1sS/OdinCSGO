@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Misc.h"
+#include "Visuals.h"
 
 uintptr_t WINAPI cheatEntry(HMODULE hModule)
 {
@@ -10,27 +11,24 @@ uintptr_t WINAPI cheatEntry(HMODULE hModule)
     FILE* f;
 
     freopen_s(&f, "CONOUT$", "w", stdout);
-
     std::cout << "Injection succeded!" << std::endl;
     
-    Misc cheats;
-    cheats.setAntiflash(true);
-    cheats.setBunnyHop(true);
-    cheats.setGlowEsp(true);
-    cheats.setTriggerBot(false);
-    cheats.setEnemiesGlowing(true);
-    cheats.setTeamMatesGlowing(true);
+
+    Visuals  visuals;
+    Aim      aim;
+    Misc     misc;
+
+    misc.setAntiflash(true);
+    misc.setBunnyHop(true);
+    misc.setTriggerBot(false);
 
     while (true) 
     {
-        cheats.loadEntityList();
-        
-        ////////////////////
-        //cheats.triggerBot();
-        cheats.bunnyHop();
-        cheats.glowESP();
-        cheats.antiFlash();
-        cheats.aimBot();
+        misc.bunnyHop();
+        misc.antiFlash();
+
+        visuals.run();
+        aim.run();
 
         if (GetAsyncKeyState(VK_INSERT))
         {
@@ -52,7 +50,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     {
         case DLL_PROCESS_ATTACH:
         {
-            CloseHandle(CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)cheatEntry, &hModule, 0, NULL));
+            auto handle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)cheatEntry, &hModule, 0, NULL);
+
+            if (handle != NULL)
+                CloseHandle(handle);
+
             break;
         }
         case DLL_THREAD_ATTACH:

@@ -33,6 +33,9 @@
     <Filter Include="Header Files\Offsets">
       <UniqueIdentifier>{3d20776d-630c-497c-b9a7-3906435764fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{5d4f7ce6-b870-4493-807d-4a45164449e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -47,9 +50,6 @@
     <ClInclude Include="Engine.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Vec3.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="hazedumper.h">
       <Filter>Header Files\Offsets</Filter>
     </ClInclude>
@@ -58,6 +58,21 @@
     </ClInclude>
     <ClInclude Include="CBaseEntity.h">
       <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlowObjectManager.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Visuals.h">
+      <Filter>Header Files\Cheat\Visuals</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +85,6 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Header Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Vec3.cpp">
-      <Filter>Header Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Misc.cpp">
       <Filter>Header Files\Cheat</Filter>
     </ClCompile>
@@ -81,6 +93,12 @@
     </ClCompile>
     <ClCompile Include="CBaseEntity.cpp">
       <Filter>Header Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Header Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Visuals.cpp">
+      <Filter>Header Files\Cheat\Visuals</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
