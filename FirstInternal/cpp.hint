@@ -1,0 +1,2 @@
+#define FIRSTINTERNAL_API __declspec(dllexport)
+#define FIRSTINTERNAL_API __declspec(dllimport)
