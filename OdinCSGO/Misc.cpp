@@ -99,4 +99,3 @@ void Misc::setTriggerBot(bool enabled)
 {
     triggerBotEnabled = enabled;
 }
-

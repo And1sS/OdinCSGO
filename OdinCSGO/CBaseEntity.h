@@ -37,9 +37,9 @@ public:
     bool             isDormant();
     bool             isAlive();
 
-    Vector             getOrigin();
-    Vector             getViewPunchAngle();
-    Vector             getBoneOrigin(uint32_t BoneIndex);
+    Vector           getOrigin();
+    Vector           getViewPunchAngle();
+    Vector           getBoneOrigin(uint32_t BoneIndex);
 
     virtual void     printInfo();
 

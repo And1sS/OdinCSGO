@@ -30,3 +30,13 @@ void Visuals::glowEsp()
         glowObject->m_bRenderWhenUnoccluded = false;
     }
 }
+
+void Visuals::enableGlowEsp()
+{
+    glowEnabled = true;
+}
+
+void Visuals::disableGlowEsp()
+{
+    glowEnabled = false;
+}
