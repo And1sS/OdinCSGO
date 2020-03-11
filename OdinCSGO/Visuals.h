@@ -2,8 +2,7 @@
 
 #include "Engine.h"
 #include "CGlowObjectManager.h"
-#include "Utilities.h"
-#include "hazedumper.h"
+#include "Interfaces.h"
 
 class Visuals
 {

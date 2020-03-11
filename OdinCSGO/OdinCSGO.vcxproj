@@ -169,11 +169,10 @@
     <ClInclude Include="Aim.h" />
     <ClInclude Include="CBaseEntity.h" />
     <ClInclude Include="CGlowObjectManager.h" />
-    <ClInclude Include="definitions.h" />
+    <ClInclude Include="Interfaces.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="hazedumper.h" />
-    <ClInclude Include="platform.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Visuals.h" />
@@ -181,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Aim.cpp" />
     <ClCompile Include="CBaseEntity.cpp" />
+    <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine.cpp" />

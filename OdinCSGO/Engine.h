@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Interfaces.h"
 #include "CBaseEntity.h"
 #include <vector>
 

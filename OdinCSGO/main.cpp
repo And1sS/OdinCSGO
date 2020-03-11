@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <iostream>
 
+#include "Interfaces.h"
 #include "Misc.h"
 #include "Visuals.h"
 
@@ -13,6 +14,7 @@ uintptr_t WINAPI cheatEntry(HMODULE hModule)
     freopen_s(&f, "CONOUT$", "w", stdout);
     std::cout << "Injection succeded!" << std::endl;
     
+    Interfaces::initialize();
 
     Visuals  visuals;
     Aim      aim;
@@ -26,7 +28,6 @@ uintptr_t WINAPI cheatEntry(HMODULE hModule)
     {
         misc.bunnyHop();
         misc.antiFlash();
-
         visuals.run();
         aim.run();
 

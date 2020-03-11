@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+// TODO: make this independent from offsets
+
 CBaseEntity Engine::getLocalPlayer()
 {
 	uintptr_t base          = *reinterpret_cast<uintptr_t*>(Utilities::getClientBase() + hazedumper::signatures::dwLocalPlayer);
@@ -19,7 +21,12 @@ std::vector<CBaseEntity> Engine::getEntityList()
 	if (!getLocalPlayer().isValid())
 		return entityList;
 
-	uintptr_t pEntityList = Utilities::getClientBase() + hazedumper::signatures::dwEntityList;
+	uintptr_t pEntityList = Interfaces::pEntityList;
+
+	if (!pEntityList)
+		return entityList;
+
+	pEntityList = *(reinterpret_cast<uintptr_t*>(pEntityList + 4)) + 0x10;
 
 	for (auto i = 0; i < MAX_ENTITIES; i++)
 	{

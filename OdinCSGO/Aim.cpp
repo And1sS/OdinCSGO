@@ -2,12 +2,12 @@
 
 #define HEAD_BONE_INDEX 8
 
-CBaseEntity Aim::getClosestFOVEnemy(std::vector<CBaseEntity> entities)
+CBaseEntity Aim::getClosestFOVEnemy(std::vector<CBaseEntity> entities, int FOV)
 {
 	CBaseEntity localPlayer   = Engine::getLocalPlayer();
 	CBaseEntity closest       = CBaseEntity(NULL, NULL);
 
-	float minFovDist         = std::numeric_limits<float>::infinity();
+	float minFovDist          = std::numeric_limits<float>::infinity();
 
 	for (CBaseEntity entity : entities)
 	{
@@ -22,11 +22,11 @@ CBaseEntity Aim::getClosestFOVEnemy(std::vector<CBaseEntity> entities)
 		Vector relativeAngle   = Vector::getRelativeAnglesDeg(localPlayer.getBoneOrigin(HEAD_BONE_INDEX),
 			entity.getBoneOrigin(HEAD_BONE_INDEX), Engine::getViewAngles());
 
-		float fovDist        = std::hypotf(relativeAngle.getX(), relativeAngle.getY());
+		float fovDist          = std::hypotf(relativeAngle.getX(), relativeAngle.getY());
 
-		if (fovDist < minFovDist)
+		if (fovDist < minFovDist && fovDist < FOV)
 		{
-			closest = entity;
+			closest    = entity;
 			minFovDist = fovDist;
 		}
 	}
@@ -41,7 +41,7 @@ void Aim::aimAt(CBaseEntity enemy)
 	if (!Engine::getLocalPlayer().isValid() || !enemy.isValid())
 		return;
 
-	CBaseEntity localPlayer = Engine::getLocalPlayer();
+	CBaseEntity localPlayer  = Engine::getLocalPlayer();
 
 	Vector myHeadOrigin      = localPlayer.getBoneOrigin(HEAD_BONE_INDEX);
 	Vector enemyHeadOrigin   = enemy.getBoneOrigin(HEAD_BONE_INDEX);
@@ -49,7 +49,7 @@ void Aim::aimAt(CBaseEntity enemy)
 	Vector deltaAngles       = Vector::getRelativeAnglesDeg(myHeadOrigin, enemyHeadOrigin, Engine::getViewAngles());
 	Vector newAngles         = Engine::getViewAngles() + deltaAngles;
 
-	newAngles              = newAngles - Engine::getLocalPlayer().getViewPunchAngle() * 2.0f;
+	newAngles                = newAngles - Engine::getLocalPlayer().getViewPunchAngle() * 2.0f;
 
 	if (GetAsyncKeyState(VK_XBUTTON1) || GetAsyncKeyState(VK_XBUTTON2))
 		Engine::setViewAngles(newAngles);
@@ -60,7 +60,7 @@ void Aim::run()
 	if (!Engine::getLocalPlayer().isValid())
 		return;
 
-	CBaseEntity closestEnemy = getClosestFOVEnemy(Engine::getEntityList());
+	CBaseEntity closestEnemy = getClosestFOVEnemy(Engine::getEntityList(), 180);
 	if (!closestEnemy.isValid())
 		return;
 

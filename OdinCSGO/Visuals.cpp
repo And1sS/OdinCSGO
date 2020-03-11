@@ -7,27 +7,25 @@ void Visuals::run()
 
 void Visuals::glowEsp()
 {
-    uintptr_t pGlowObjectManager = *reinterpret_cast<uintptr_t*>(Utilities::getClientBase()
-        + hazedumper::signatures::dwGlowObjectManager);
+    if (Interfaces::g_pGlowManager == nullptr || !glowEnabled || !Engine::getLocalPlayer().isValid())
+        return;
 
-	if (!glowEnabled || !pGlowObjectManager || !Engine::getLocalPlayer().isValid())
-		return;
+    auto entityList = Engine::getEntityList();
 
-    for (CBaseEntity entity : Engine::getEntityList())
+    for (CBaseEntity entity : entityList)
     {
         if (!entity.isValid() || !entity.isAlive() || entity.isDormant()
             || entity.getBase() == Engine::getLocalPlayer().getBase()
             || entity.getTeam() == Engine::getLocalPlayer().getTeam())
             continue;
 
-        Color entityGlowColor = { 1, 0, 0, 1 };
-            
-        GlowObjectDefinition_t* glowObject = reinterpret_cast<GlowObjectDefinition_t*>(pGlowObjectManager
-            + (entity.getGlowIndex() * sizeof(GlowObjectDefinition_t)));
+        Color entityGlowColor = { 1 - entity.getHealth() / 100.0f, entity.getHealth() / 200.0f, 0, 1 };
+                   
+        GlowObjectDefinition_t& glowObject = Interfaces::g_pGlowManager->m_GlowObjectDefinitions[entity.getGlowIndex()];
 
-        glowObject->m_vGlowColor = entityGlowColor;
-        glowObject->m_bRenderWhenOccluded = true;
-        glowObject->m_bRenderWhenUnoccluded = false;
+        glowObject.m_vGlowColor = entityGlowColor;
+        glowObject.m_bRenderWhenOccluded = true;
+        glowObject.m_bRenderWhenUnoccluded = false;
     }
 }
 

@@ -5,9 +5,10 @@ uintptr_t Utilities::engineBase = NULL;
 
 uintptr_t Utilities::getClientBase()
 {
-	if (clientBase == NULL)
+	while (clientBase == NULL)
 	{
 		clientBase = reinterpret_cast<uintptr_t>(GetModuleHandle(L"client_panorama.dll"));
+		Sleep(100);
 	}
 	
 	return clientBase;
@@ -15,9 +16,10 @@ uintptr_t Utilities::getClientBase()
 
 uintptr_t Utilities::getEngineBase()
 {
-	if (engineBase == NULL)
+	while (engineBase == NULL)
 	{
 		engineBase = reinterpret_cast<uintptr_t>(GetModuleHandle(L"engine.dll"));
+		Sleep(100);
 	}
 
 	return engineBase;
@@ -25,9 +27,6 @@ uintptr_t Utilities::getEngineBase()
 
 uintptr_t Utilities::findPattern(uintptr_t start, uintptr_t end, const char* pattern, const char* mask)
 {
-	uintptr_t offset;
-	for (offset = 0; mask[offset] != '?'; offset++);
-
 	for (uintptr_t pStart = start; pStart <= end - strlen(mask); pStart++)
 	{
 		uint8_t count = 0;
@@ -40,7 +39,7 @@ uintptr_t Utilities::findPattern(uintptr_t start, uintptr_t end, const char* pat
 
 			if (++count == strlen(mask))
 			{
-				return pStart + offset;
+				return pStart;
 			}
 		}
 	}
@@ -52,8 +51,11 @@ uintptr_t Utilities::findPattern(const char* szModuleName, const char* pattern, 
 {
 	HMODULE hModule = GetModuleHandleA(szModuleName);
 
-	if (hModule == NULL)
-		return NULL;
+	while (hModule == NULL)
+	{
+		Sleep(100);
+		hModule = GetModuleHandleA(szModuleName);
+	}
 
 	MODULEINFO modInfo;
 	HANDLE hProcess = GetCurrentProcess();

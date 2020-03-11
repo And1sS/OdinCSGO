@@ -36,6 +36,9 @@
     <Filter Include="SDK">
       <UniqueIdentifier>{5d4f7ce6-b870-4493-807d-4a45164449e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{9219cb54-7ccd-416c-ae27-8fe609f2fc9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -68,11 +71,8 @@
     <ClInclude Include="Visuals.h">
       <Filter>Header Files\Cheat\Visuals</Filter>
     </ClInclude>
-    <ClInclude Include="definitions.h">
-      <Filter>SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="platform.h">
-      <Filter>SDK</Filter>
+    <ClInclude Include="Interfaces.h">
+      <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="Visuals.cpp">
       <Filter>Header Files\Cheat\Visuals</Filter>
+    </ClCompile>
+    <ClCompile Include="Interfaces.cpp">
+      <Filter>Header Files\Interfaces</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
